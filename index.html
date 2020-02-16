@@ -1,61 +1,133 @@
 <!DOCTYPE html>
 <html>
 	<title>M Write JavaScript For Test</title>
-	<header style="display: block;color: #000;">		
+	<header style="display: block;">		
 		<h1 style="background-color: chartreuse;text-align: center;">TEST WRITE CODE JAVASCRIPT 1 </h1>
 	</header>
+	<style>     
+        .showtotal{    
+           
+            width: 420px;
+            height: 430px;
+            background-color:black;
+            transform: translateX(0px) translateY(0px);
+        }  
+        .locationbuttonstyle {
+          text-align: center;
+        }
+    </style>
 <body>
 	
-		<h2 id="Ramdom" style="color: rgb(68, 0, 255);">Random 1-100 Show 10 Number</h2>
-		<h3 id="random" style="color: rgb(251, 255, 0);" ></h3>
-		<h2 id="sumnumber" style="color: red;">Sum Random 10 Number</h2>
-		<h3 id="sumnumberShow" style="color: rgb(38, 0, 255);"></h3>
-		<h2 id="GetMinMax" style="color: green;">Get Min And Max Random 10 Number</h2>
-		<h3 id="getminmaxshow" style="color: rgb(85, 56, 56);"></h3>
+	<div id="myDIV" class="showtotal">
+		<div class="locationbuttonstyle" >
+			<button style="font-size: 20px;background-color: green;color: greenyellow;" onclick="myRandom()">click me</button>
+		</div>	
+		<h2 id="RamdomShow"        style="color:skyblue;"></h2>
+		<h3 id="random"        style="color:brown;" ></h3>
+		<h2 id="sumnumber"     style="color: red;"></h2>
+		<h3 id="sumnumberShow" style="color:blue;"></h3>
+		<h2 id="GetMinMax"     style="color: green;"></h2>
+		<h3 id="getminmaxshow" style="color:purple;"></h3>  
+		<h2 id="oo"     style="color: yellow;"></h2>
+		<h3 id="mm" style="color:orangered;"></h3>              
+	</div>	  
 	
 
 	<script>
-	    var l_randomArrayNumber = [];
-		var lValues = 100;
-		var lcount = 10;
+	   var lValues = 100;
+			var lcount = 10; 
+			function myRandom() {
+				        
+						var x = 0;
+						var bmyMin = lValues;
+				 		var bmyMax = 0;
+					    var lRandonNumber = [];
+						var strMinMax;
+						var mySumNumber = 0;
+                        var str1;
+                        var str2;
+                        var str3;
+                        var randomArrayNumber = [];
+               
+						for(var i = 0; i < lcount;i++)
+						{
+                            
+							x = Math.floor((Math.random() * lValues) + 1);
+							lRandonNumber.push(x);
+							mySumNumber += lRandonNumber[i]
+							if(bmyMin > lRandonNumber[i]){
+								bmyMin = lRandonNumber[i];
+                               
+							}
+							else if(bmyMax < lRandonNumber[i])
+							{
+						  		 bmyMax = lRandonNumber[i];
+							}							
+						}
+                        for(var j =0;j<lRandonNumber.length;j++)
+                        {
+                            randomArrayNumber.push(lRandonNumber[j]);
+                        }
+						
+						
+                        str1 = 'Random 1-100 Show 10 Number'
+                        str2 = 'Sum Random 10 Number'
+                        str3 = 'Get Min And Max Random 10 Number'
+                        str4= 'ค่าใกล้เคียง 50 ที่สุด '
+         
 
-		function myRandom() {
-					var x = 0;
-					var lRandonNumber = [];
-					for(var i = 0; i < lcount;i++)
-					{
-						x = Math.floor((Math.random() * lValues) + 1);
-						lRandonNumber.push(x);
-					}					
-					return(lRandonNumber);
-		}
-		l_randomArrayNumber = myRandom();		    
+                        randomArrayNumber.sort(sortnumber);   
+                        var numsort =   lRandonNumber.sort(sortnumber);       
 
-		var mySumNumber1 = l_randomArrayNumber.reduce(function(a,b){
-	       		return(a+b)
-		});
-		
-		function mySelectMin(){
-	          var bmyMin = lValues;
-              var bmyMax = 0;
-              var strMinMax;			  
-			  for(var bx = 0;bx < l_randomArrayNumber.length;bx++){			        
-			        if(bmyMin > l_randomArrayNumber[bx]){
-					    bmyMin = l_randomArrayNumber[bx];
-					}
-					else if(bmyMax < l_randomArrayNumber[bx])
-					{
-					   bmyMax = l_randomArrayNumber[bx];
-					}
-	            }
-				strMinMax = 'Min : ' + bmyMin +'   '+'Max : '+ bmyMax
-           return(strMinMax);				
-		}
+                        var sumMedian = (lcount +1)/2  
+                        
+                        var sumMedianCut = Math.floor(sumMedian)             
+                        var Median1 =0;
+                        var Median2 = 0;
+                        for(var bx = 0;bx < sumMedianCut;bx++)
+                        {
+                            Median1 = randomArrayNumber[bx];
+                            Median2 =randomArrayNumber[lcount - (bx + 1)]
+                        }
+                        var TotalMadian = (Median1 + Median2)/2
+                        randomArrayNumber.push(50);
+                        randomArrayNumber.sort(sortnumber);
 
-	
-	document.getElementById("random").innerHTML='Total = ' + l_randomArrayNumber;	
-	document.getElementById("sumnumberShow").innerHTML='Total = ' + mySumNumber1;
-	document.getElementById("getminmaxshow").innerHTML='Total = ' + mySelectMin();
+                         var Median3 =0;
+                         var Median4 = 0;
+
+                         for(var by = 0;by<randomArrayNumber.length;by++)
+                         {
+                             if(randomArrayNumber[by]< 50)
+                             {
+                                Median3 = randomArrayNumber[by];
+                             }
+                          
+                         }
+                         for(var by = 0;by<randomArrayNumber.length;by++)
+                         {                           
+                             if(randomArrayNumber[(lcount + 1)- (by + 1)] > 50)
+                             {
+                                Median4 = randomArrayNumber[(lcount +1) - (by + 1)]
+                             }
+                         }
+
+                        strMinMax = 'Min : ' + bmyMin +'    Mid : '+TotalMadian+'    '+'Max : '+ bmyMax
+						//return(lRandonNumber);
+                        document.getElementById("RamdomShow").innerHTML= str1;
+                        document.getElementById("sumnumber").innerHTML= str2;
+                        document.getElementById("GetMinMax").innerHTML= str3;	
+						document.getElementById("random").innerHTML='Total = ' + numsort;	
+						document.getElementById("sumnumberShow").innerHTML='Total = ' + mySumNumber;
+						document.getElementById("getminmaxshow").innerHTML='Total = ' + strMinMax;
+                        document.getElementById("oo").innerHTML= str4;
+                        document.getElementById("mm").innerHTML= Median3 + ' And  ' + Median4;
+						
+			}	
+            function sortnumber(a,b){
+                return a - b;
+
+            }	
 	
 	</script>
 </body>
